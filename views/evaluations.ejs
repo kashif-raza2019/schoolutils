@@ -1,0 +1,41 @@
+<%- include('header.ejs') %>
+<div id="main">
+<div class="jumbotron jumbotron-fluid">
+    <div class="container text-center">
+      <h1 class="display-4">Welcome to School Utils Dashboard</h1>
+      <p class="lead">
+        You can use the cards for respective evaluation purposes
+      </p>
+    </div>
+</div>
+  <!-- End of Jumbotron -->
+  <!-- Cards -->
+  <div class="container text-center ctr">
+      <div class="row text-center">
+          <div class="col-lg-6 text-center">
+            <div class="card" style="width: 22rem;">
+                <img src="/public/assets/PakizaEduLogo.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Evaluation - Deeniyat</h5>
+                  <p class="card-text">Evaluation for Deeniyat for each school on the basis of merit points.</p>
+                  <a href="/evaluations/deeniyat/" class="btn btn-primary">Evaluate - Deeniyat</a>
+                </div>
+              </div>
+          </div>
+          <div class="col-lg-6 text-center">
+            <div class="card" style="width: 22rem;">
+                <img src="/public/assets/PakizaEduLogo.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Evaluation - Academic</h5>
+                  <p class="card-text">Evaluation for Academics of teachers for each school on the basis of merit points.</p>
+                  <a href="/evaluations/academic/" class="btn btn-primary">Evaluate - Academic</a>
+                </div>
+              </div>
+            </div>
+    </div>
+</div>
+<br><br>
+</div>
+<!-- End of Cards -->
+
+<%- include('footer.ejs') %>

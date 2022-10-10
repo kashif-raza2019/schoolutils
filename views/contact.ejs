@@ -1,0 +1,22 @@
+<%- include('header2.ejs') %>
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container text-center">
+        <p style="display: flex; align-items: center; text-align: center; justify-content: center; padding: 20px ;margin: 0 auto;  ">
+            <h3>Contact Information</h3>
+            <p class="text-info"><%= message %></p>
+            <p>You will be redirected to the home page within 5 second(s)</p>
+            <button onclick="location.href='/'" class="btn btn-primary">Go Back</button>
+        </p>
+    </div>
+</div>
+
+<script>
+    window.onload = function() {
+        setTimeout(function() {
+            location.href = window.history.back();
+        }, 4000);
+    }
+</script>
+
+<%- include('footer.ejs') %>

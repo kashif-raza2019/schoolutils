@@ -1,0 +1,144 @@
+
+body{
+    background-color: #ffffff;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 10px;
+    color: rgb(45, 44, 44);
+    padding: 0;
+    size: landscape;
+}
+
+.evaluation-form{
+    width: 100%;
+    margin: 0 auto;
+    padding-left: 20;
+    padding-right: 20;
+}
+
+.box{
+    height: 20px;
+    width: 100%;
+    min-width: 50px!important;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    border: 1px solid black;
+}
+
+.header{
+    width: 90%;
+    height: 42px;
+    padding-top: 10px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #130d0d;
+    position: relative;
+}
+.heading{
+    position: absolute;
+    top: 30px;
+    left: 0px;
+    font-size: 16px;
+}
+.school-name{
+    font-size: 14px;
+    position: absolute;
+    top: 30px;
+    right: 80px;
+}
+
+.logo{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+.rightLogo{
+    width: 80px;
+    height: 50px;
+}
+
+.teacher-details{
+    width: 90%;
+    padding-top: 10px;
+    margin-top: 2px;
+    background-color: #ffffff;
+    border-top: 3.2px solid #130d0d;
+    position: relative;
+}
+
+table {
+    border-collapse: collapse;
+  }
+
+.teacher-table td{
+    width: 15%;
+}
+.teacher-table tr{
+    padding: 5px;
+}
+.checkMark{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.parameters{
+    margin-top: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 5px;
+    border-bottom: 2px solid #292727;
+}
+
+.paramsTable tr{
+    padding: 3px;
+    border: 1px solid rgb(42, 41, 41);
+    margin: 0px;
+}
+
+.paramsTable td{
+    padding: 3px;
+    border: 1px solid rgb(42, 41, 41);
+    margin: 0px;
+}
+.paramsTable th{
+    padding: 3px;
+    border: 1px solid rgb(42, 41, 41);
+    margin: 0px;
+}
+
+.ho-table tr{
+    padding: 3px;
+    margin: 0px;
+}
+.ho-box{
+    height: 60px;
+    width: 100%;
+    border: 1px solid grey;
+}
+.ho-table td{
+    padding-left: 30px;
+    padding-right: 30px;
+    margin: 0px;
+}
+
+.header td{
+    padding: 20px;
+    border: 1px solid rgb(42, 41, 41);
+    margin: 0px;
+}
+
+.header tr{
+    padding: 20px;
+    border: 1px solid rgb(42, 41, 41);
+    margin: 0px;
+}
+.shareBtn{
+    border: none;
+    background-color: #12834a;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 4px;
+}
+.shareBtn:hover{
+    opacity: 0.8;
+}

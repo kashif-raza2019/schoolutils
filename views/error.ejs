@@ -1,0 +1,12 @@
+<%- include('header2.ejs') %>
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container text-center">
+        <p style="display: flex; align-items: center; text-align: center; justify-content: center; padding: 20px ;margin: 0 auto;  ">
+            <h3>Error</h3>
+            <p class="text-danger"><%= message %></p>
+            <button onclick="location.href='/'" class="btn btn-primary">Go Back</button>
+        </p>
+    </div>
+</div>
+<%- include('footer.ejs') %>

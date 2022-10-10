@@ -1,0 +1,202 @@
+<!-- Header -->
+<%- include('header.ejs') %>
+<!-- End of Header -->
+
+<!-- Main -->
+<div id="main">
+<div class="jumbotron jumbotron-fluid">
+    <div class="container text-center">
+        <h1 class="display-4">Evaluation of Academics</h1>
+        <p class="lead">Your evaluations below</p>
+    <div class="container text-center">
+        <div class="row" style="overflow-x: scroll;">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th colspan="3">Evaluator: <span class="text-primary"><%= user.name %></span></th>
+                        <th colspan="4">Email: <span class="text-primary"><%= user.email %></span></th>
+                        <th><button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#addForm" >Add <i class="fa fa-plus-circle"></i></button></th>
+                    </tr>
+                    <tr>
+                        <th colspan="4">Total Evaluations: </th>
+                        <th class="text-success" colspan="4"><%= analytics.length %></th>
+                    </tr>
+                    <tr>
+                        <th>S No</th>
+                        <th>School </th>
+                        <th>Teacher </th>
+                        <th data-toggle="tooltip"  data-placement="top" data-title="Date of Evaluation">Date of Evaluation</th>
+                        <th>Edit</th>
+                        <th>Print</th>
+                        <th>Share</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- If there is data for academic then show it else show  -->
+                    <% if (academic.length > 0) { %>
+                        <% for(var i = 0; i < academic.length; i++) { %>
+                            <tr>
+                                <td><%= i + 1 %></td>
+                                <td><%= academic[i].school %></td>
+                                <td><%= academic[i].teacher %></td>
+                                <td><%= academic[i].date %></td>
+                                <td><a href="/evaluations/academic/<%= academic[i]._id %>/edit" class="btn btn-primary"><i class="fa fa-edit"></i></a></td>
+                                <td><a href="/evaluations/academic/<%= academic[i]._id %>/view" class="btn btn-success"><i class="fa fa-print"></i></a></td>
+                                <td><a href="/evaluations/academic/public/<%= academic[i]._id %>/" class="btn btn-secondary"><i class="fa fa-share"></i></a></td>
+                                <td><button class="btn btn-danger" onclick="return confirmDeleteAcademic(`<%= academic[i]._id %>`);"><i class="fa fa-trash-o"></i></button></td>
+                            </tr>   
+                        <% } %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="8" class="text-center">No data found</td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- End of Main -->
+<!-- Modal for Adding the Evaluation Form -->
+<!-- Modal -->
+<div class="modal fade" id="addForm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Add an evaluation for teacher</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <!-- Form -->
+        <form action="/evaluations/academic/add" method="post">
+            <input type="hidden" name="userId" value="<%= user._id %>">
+            <input type="hidden" name="evaluatorName" value="<%= user.name %>">
+            <div class="mb-3">
+                <label for="school" class="form-label">School Name</label>
+                <select name="school" id="school" class="form-control form-select" required>
+                    <option value="">Select a school</option>
+                    <option value="Pakiza Play School 1">Pakiza Play School 1</option>
+                    <option value="Pakiza Play School 2">Pakiza Play School 2</option>
+                    <option value="Pakiza Play School 3">Pakiza Play School 3</option>
+                    <option value="Pakiza Public School">Pakiza Public School</option>
+                    <option value="Zeenat Public School">Zeenat Public School</option>
+                    <option value="Taiba Edu Complex">Taiba Edu Complex</option>
+                    <option value="Ahamad Noor Memorial School">Ahmad Noor Memorial School</option>
+                    <option value="St. Mariyam Higher Secondary School">St. Mariyam Higher Secondary School</option>
+                </select>
+                <label for="teacher" class="form-label">Teacher Full Name</label>
+                <input type="text" class="form-control" name="teacher" id="teacher" placeholder="Enter full name" required>
+            </div>
+            <div class="mb-3">
+                <!-- Class Handling -->
+                <label for="classHandling" class="form-label">Class Handling</label>
+                <input type="text" class="form-control" name="classHandling" id="classHandling" placeholder="Class Handling" required>  
+                <!-- Timing -->
+                <label for="timing" class="form-label">Timings</label>
+                <input type="text" class="form-control" name="timing" id="timing" placeholder="Enter timings" required>
+                <!-- Experiance in Years -->
+                <label for="yoe" class="form-label">Years of Experience</label>
+                <input type="number" class="form-control" name="yoe" id="yoe" placeholder="Enter experience in years" required>
+                <!-- Date of Joining -->
+                <label for="doj" class="form-label">Date of Joining</label>
+                <input type="date" class="form-control form-date" name="doj" id="doj" placeholder="Enter Date" required>
+                <!-- Gender -->
+                <label for="gender" class="form-label">Gender</label>
+                <select name="gender" id="gender" class="form-control form-select" required>
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Undisclosed">Undisclosed</option>
+                </select>
+
+                <!-- Date of Birth -->
+                <label for="dob" class="form-label">Date of Birth</label>
+                <input type="date" class="form-control form-calendar" name="dob" id="dob" placeholder="" required>
+
+                <!-- Academic Qualifications -->
+                <label for="academicQualification" class="form-label"><b>Academic Qualifications: </b></label>
+                <input type="radio" name="academicQualification" id="academicQualification"  value="Below SSLC" required> Below SSLC
+                <input type="radio" name="academicQualification" id="academicQualification"  value="High School" required> High School
+                <input type="radio" name="academicQualification" id="academicQualification"  value="Higher Secondary" required> Higher Secondary
+                <input type="radio" name="academicQualification" id="academicQualification"  value="Graduation" required> Graduation
+                <input type="radio" name="academicQualification" id="academicQualification"  value="Post Graduation" required> Post Graduation <br>
+                
+
+                <!-- Marital Status -->
+                <label for="maritalStatus" class="form-label">Marital Status</label>
+                <select name="maritalStatus" class="form-control form-select" id="maritalStatus" required>
+                    <option value="">Select Marital Status</option>
+                    <option value="Unmarried">Unmarried</option>
+                    <option value="Married">Married</option>
+                    <option value="Widow">Widow</option>
+                </select>
+
+                <!-- Email -->
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" name="email" id="email"  placeholder="Email address">
+
+                 <!-- Mobile Number -->
+                 <label for="mobile" class="form-label">Mobile Number</label>
+                 <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Enter mobile number" required>
+
+                <!-- Address -->
+                <label for="address" class="form-label">Permanent Address</label>
+                <input type="text" name="address" class="form-control" name="address" id="address" placeholder="Enter Permanent Address" required>
+                <!-- Current address -->
+                <label for="currentAddress" class="form-label">Current Address</label>
+                <input type="checkbox" id="sameAddress" onchange="equateValue();"> Same as above
+                <input type="text" class="form-control" name="currentAddress" id="currentAddress" placeholder="Enter current address" required>
+               
+            </div>
+            <div class="mb-3">
+                <!-- Academic List -->
+                <h4>Parameters</h4>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr class="text-center">
+                            <th>Sno</th>
+                            <th>Parameters</th>
+                            <th>Excellent (100 - 91)</th>
+                            <th>Very Good (90 - 71)</th>
+                            <th>Good (70 - 51)</th>
+                            <th>Average (50 - 41)</th>
+                            <th>Below Average</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for (let i = 0; i < parameter.length; i++) { %>
+                        <tr class="text-center">
+                            <td><%= i+1%></td>
+                            <th><%= parameter[i] %></th>
+                            <td><input type="radio" name="p<%= i+1%>" id="p<%= i+1%>" value="1"></td>
+                            <td><input type="radio" name="p<%= i+1%>" id="p<%= i+1%>" value="2"></td>
+                            <td><input type="radio" name="p<%= i+1%>" id="p<%= i+1%>" value="3"></td>
+                            <td><input type="radio" name="p<%= i+1%>" id="p<%= i+1%>" value="4"></td>
+                            <td><input type="radio" name="p<%= i+1%>" id="p<%= i+1%>" value="5"></td>
+                            </tr> 
+                        <tr>
+                        <% } %>
+                            <td colspan="7">
+                                <div class="form-group">
+                                    <label for="comment">Any Special Note:</label>
+                                    <textarea class="form-control" rows="5" name="specialNote" id="comment" placeholder="Any special note or comment regarding teacher (Maximum 200 words)" maxlength="200"></textarea>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <!-- End of Form -->
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+        </div>
+    </div>
+    </div>
+</div>
+</div>
+<!-- Footer -->
+<%- include('footer.ejs') %>

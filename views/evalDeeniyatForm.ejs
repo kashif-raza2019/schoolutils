@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/css/document.css">
+    <title><%= deeniyat.teacher %></title>
+</head>
+<body onload="documentFunc()">
+    <div class="evaluation-form">
+        <div class="header">
+            <div class="heading">
+                <b>Deeniyat Teacher's Evaluation</b>
+            </div>
+            <div class="school-name">
+                School: <%= deeniyat.school %>
+            </div>
+            <div class="logo">
+                <img src="/public/assets/PakizaEduLogo.png" alt="logo" class="rightLogo" >
+            </div>
+        </div>
+        <div class="teacher-details">
+            <table class="teacher-table">
+                <tr>
+                    <td colspan="2">Name of Teacher:</td>
+                    <th colspan="2"><%= deeniyat.teacher %></th>
+                    <td colspan="2">Classes Handling:</td>
+                    <th colspan="3"><%= deeniyat.classHandling %></th>
+                    <td>Timing:</td>
+                    <th colspan="4"><%= deeniyat.timing %></th>
+                </tr>
+                <tr>
+                    <td colspan="2">Experience in year's:</td>
+                    <th><%= deeniyat.yoe %></th>
+                    <td colspan="4">Date of Joining: <b><%= deeniyat.doj %><b></td>
+                    <td>Gender:</td>
+                    <th><%= deeniyat.gender %></th>
+                    <td colspan="2">Date of Birth: </td>
+                    <th colspan="2"><%= deeniyat.dob %></th>
+                </tr>
+                <tr>
+                    <td>Academic Qualification:</td>
+                    <td>Below SSLC</td>
+                    <td><% if(deeniyat.academicQualification === "Below SSLC") { %><span class="box">&check;</span> <% } %></td>
+                    <td>High School</td>
+                    <td><% if(deeniyat.academicQualification === "High School") { %><span class="box">&check;</span> <% } %></td>
+                    <td colspan="2">Higher Secondary</td>
+                    <td><% if(deeniyat.academicQualification === "Higher Secondary") { %>&check;</span> <% } %></td>
+                    <td>Graduation</td>
+                    <td><% if(deeniyat.academicQualification === "Graduation") { %><span class="box">&check;</span> <% } %></td>
+                    <td colspan="2">Post Graduation</td>
+                    <td><% if(deeniyat.academicQualification === "Post Graduation") { %><span class="box">&check;</span> <% } %></td>
+                </tr>
+                <tr>
+                    <td colspan="2">Deeniyat Qualification:</td>
+                    <th colspan="3"><%= deeniyat.deeniyatQualification %></th>
+                    <td colspan="2">Marital Status: </td>
+                    <th colspan="2"><%= deeniyat.maritalStatus %></th>
+                    <td>E-Mail:</td>
+                    <th colspan="3"><%= deeniyat.email %></th>
+                </tr>
+                <tr>
+                    <td>Mob No.:</td>
+                    <th colspan="2"><%= deeniyat.mobile %></th>
+                    <td colspan="2">Permanent Address:</td>
+                    <th colspan="8"><%= deeniyat.address %></th>
+                </tr>
+                <tr>
+                    <td colspam="2">Current Address:</td>
+                    <th colspan="11"><%= deeniyat.currentAddress %></th>
+                </tr>
+            </table>
+        </div>
+        <div class="parameters">
+            <table class="paramsTable">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>PARAMETERS</th>
+                        <th>Excellent<br>(100-91)</th>
+                        <th>V.Good <br>(90-71)</th>
+                        <th>Good <br>(70-51)</th>
+                        <th>Average <br>(50-41)</th>
+                        <th>Below Average</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(let i = 0; i < parameters.length; i++){ %>
+                        <tr>
+                            <td><%= i+1 %>.</td>
+                            <td><%= parameters[i] %></td>
+                            <td style="text-align: center;"><% if( deeniyat.deeniyatList[i] === "1" ) {%> <span class="checkMark">&check;</span> <%}%></td>
+                            <td style="text-align: center;"><% if( deeniyat.deeniyatList[i] === "2" ) {%> <span class="checkMark">&check;</span> <%}%></td>
+                            <td style="text-align: center;"><% if( deeniyat.deeniyatList[i] === "3" ) {%> <span class="checkMark">&check;</span> <%}%></td>
+                            <td style="text-align: center;"><% if( deeniyat.deeniyatList[i] === "4" ) {%> <span class="checkMark">&check;</span> <%}%></td>
+                            <td style="text-align: center;"><% if( deeniyat.deeniyatList[i] === "5" ) {%> <span class="checkMark">&check;</span> <%}%></td>
+                        </tr>
+                    <% } %>
+                    <tr>
+                        <td colspan="7">Any special note: <%= deeniyat.specialNote %></td>
+                    </tr>
+                    <tr style="border: none;">
+                        <td style="border: none;" colspan="7"></td>
+                    </tr>
+                    <tr style="border: none;">
+                        <td style="border: none;" colspan="7"></td>
+                    </tr>
+                    <tr style="border: none;">
+                        <td style="border: none;">Date: </td>
+                        <td style="border: none;" colspan="2"><%= deeniyat.date %></td>
+                        <td style="border: none;"></td>
+                        <td style="border: none;"></td>
+                        <td  style="border: none;" colspan="2">Signature of Principal</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="ho-remarks">
+            <div class="ho-box">HO Remarks: </div>
+            <table class="ho-table">
+                <tr  style="border: none;">
+                    <td style="border: none;">Date:</td>
+                    <td style="border: none;"></td>
+                    <td style="border: none;"></td>
+                    <td style="border: none;"></td>
+                    <td style="border: none;"></td>
+                    <td style="border: none;"></td>
+                    <td style="border: none;"></td>
+                    <td style="border: none;"></td> 
+                    <td style="border: none;">Signature of Moral Head</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script src="/public/js/document.js"></script>
+</body>
+</html>
